@@ -4,6 +4,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <!-- Enlazar el archivo JavaScript -->
+    <script src="index.js" defer></script>
     <title>Flatsome</title>
 </head>
 <style>
@@ -16,8 +18,12 @@
         color: var(--text-color);
     }
 </style>
-
-<body>
+<body onload="mostrarMensajeBienvenida()">
+    <button onclick="toggleElemento('miDiv')">Mostrar/Ocultar</button>
+    <div id="miDiv" style="display: none;">
+        <!-- Contenido del div que se mostrará/ocultará -->
+        <p>Bienvenido a Flatsome, tu destino definitivo para la moda más actual y elegante. En Flatsome, nos dedicamos a ofrecerte una experiencia de compra en línea excepcional, donde puedes descubrir las últimas tendencias en ropa, calzado y accesorios para hombres y mujeres.</p>
+    </div>
     <header>
         <div class="nav">
             <div class="nav2">
@@ -343,8 +349,9 @@
                     </p>
                 </div>
                 <div class="signup-form">
-                    <form>
-                        <input type="email" placeholder="Your Email (required)">
+                    <!-- Añadir el evento onsubmit y llamar a la función validarFormulario() -->
+                    <form onsubmit="return validarFormulario()">
+                        <input id="email" type="email" placeholder="Your Email (required)">
                         <button type="submit" value="Sign Up">Sign up</button>
                     </form>
                 </div>
@@ -714,8 +721,7 @@
                         <li><a href="#" aria-label="Washed-out">Washed-out</a></li>
                         <li><a href="#" aria-label="White">White</a></li>
                         <li><a href="#" aria-label="Women">Women</a></li>
-                    </ul>
-                    
+                    </ul>    
             </article>
 
             <article class="column">
@@ -724,7 +730,7 @@
             
                 <p>Signup to get news about Flatsome & WooCommerce. We don't spam!</p>
                 <form>
-                    <span>
+                    <span onsubmit="return validarFormulario()">
                         <label for="email">Your Email (required):</label>
                         <input type="text" id="email" name="email">
                     </span>
@@ -756,6 +762,34 @@
             </div>
         </section>
     </footer>
+    <script>
+        // Función para mostrar un mensaje de bienvenida
+        function mostrarMensajeBienvenida() {
+            alert('¡Bienvenido a nuestra página web!');
+        }
+
+        // Función para validar un formulario
+        function validarFormulario() {
+            const email = document.getElementById('email').value;
+
+            // Verificar si el campo están vacíos
+            if (email === '') {
+                alert('Por favor, complete el campo del formulario.');
+                return false; // Evitar el envío del formulario
+            } else {
+                return true; // Permitir el envío del formulario
+            }
+        }
+        // Función para mostrar y ocultar un elemento HTML
+        function toggleElemento(idElemento) {
+            const elemento = document.getElementById(idElemento);
+            if (elemento.style.display === 'none' || elemento.style.display === '') {
+                elemento.style.display = 'block';
+            } else {
+                elemento.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 
 </html>
